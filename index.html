@@ -58,13 +58,13 @@ input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;bo
 </div>
 
 <div class="card">
-<h3>⚙️ NEBIUS TOKEN FACTORY SETTINGS - V10.4 AUTO CLEAR</h3>
+<h3>⚙️ NEBIUS TOKEN FACTORY SETTINGS - V10.5 NHẬN KEY v1. (FINAL)</h3>
 <label>ENDPOINT</label>
 <input id="endpoint" value="https://api.tokenfactory.nebius.com/v1/chat/completions">
 
-<label>NEBIUS API KEY (sk-...)</label>
+<label>NEBIUS API KEY (sk-... hoặc v1....)</label>
 <div class="row">
-<input id="apikey" type="password" placeholder="Dán sk-... thật vào đây, không phải dấu chấm">
+<input id="apikey" type="password" placeholder="Dán sk-... hoặc v1.... thật vào đây">
 <button class="btn btn-gold" onclick="toggleKey()">👁️</button>
 <button class="btn btn-red" onclick="clearKey()">🗑️ Xóa</button>
 <button class="btn btn-gold" onclick="saveKey()">🐢 Lưu</button>
@@ -82,7 +82,7 @@ input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;bo
 
 <div style="margin-top:10px">
 <button class="btn btn-red" onclick="hardReset()">🔴 NÚT KHẨN CẤP: XÓA HẾT KEY CHẤM CŨ</button>
-<p style="font-size:12px;color:#aaa;margin-top:5px">Nếu ô key toàn dấu chấm ................ mà vẫn báo đỏ, bấm nút đỏ này!</p>
+<p style="font-size:12px;color:#aaa;margin-top:5px">V10.5 đã nhận cả key sk- và v1. dài 200 ký tự. Nếu ô key toàn dấu chấm ................ mà vẫn báo đỏ, bấm nút đỏ này!</p>
 </div>
 </div>
 
@@ -113,10 +113,11 @@ function isValidKey(k){
  if(!k) return false;
  k=k.trim();
  if(k.length < 20) return false;
- if(!k.startsWith("sk-")) return false;
+ // Accept sk- and v1. and service-account style
+ if(!(k.startsWith("sk-") || k.startsWith("v1.") || k.startsWith("v1-") || k.length>100)) return false;
  if(/^[\.\*\-_]+$/.test(k)) return false;
- if(k.includes("....")) return false;
- if(k.replace(/[^a-zA-Z0-9\-_]/g,"").length < 20) return false;
+ if(k.includes("....") && !k.startsWith("v1.")) return false;
+ if(k.replace(/[^a-zA-Z0-9\-_\.]/g,"").length < 20) return false;
  return true;
 }
 
@@ -175,13 +176,13 @@ function hardReset(){
 function saveKey(){
  let k=document.getElementById("apikey").value.trim();
  // block dot keys
- if(k.includes("....") || k.startsWith("...") || /^\.+$/.test(k) || k.replace(/\./g,"").length < 10){
+ if((k.includes("....") && !k.startsWith("v1.")) || (k.startsWith("...") && !k.startsWith("v1.")) || /^\.+$/.test(k) || (k.replace(/\./g,"").length < 10 && !k.startsWith("v1."))){
    alert("❌ Đây là key toàn dấu chấm ................ không phải sk-... thật! Bấm nút đỏ XÓA HẾT rồi dán lại sk-... thật!");
    clearKey();
    return;
  }
  if(!isValidKey(k)){
-   alert("❌ Key phải bắt đầu bằng sk- và dài hơn 20 ký tự! Ông đang dán: "+k.substring(0,20));
+   alert("❌ Key phải bắt đầu bằng sk- hoặc v1. và dài hơn 20 ký tự! Ông đang dán: "+k.substring(0,20));
    return;
  }
  localStorage.setItem(LS_KEY, k);
