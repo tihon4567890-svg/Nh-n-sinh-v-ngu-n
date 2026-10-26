@@ -53,8 +53,9 @@ input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;bo
 
 <label>MODEL</label>
 <select id="model">
-<option value="meta-llama/Meta-Llama-3.1-70B-Instruct" selected>meta-llama/Meta-Llama-3.1-70B-Instruct (Khuyên dùng)</option>
-<option value="google/gemma-3-27b-it">google/gemma-3-27b-it</option>
+<option value="meta-llama/Meta-Llama-3.1-70B-Instruct">meta-llama/Meta-Llama-3.1-70B-Instruct (Khuyên dùng)</option>
+<option value="google/gemma-3-27b-it" selected>google/gemma-3-27b-it (Ổn định - Dùng để quay video)</option>
+
 <option value="nvidia/Llama-3.1-Nemotron-70B-Instruct">nvidia/Llama-3.1-Nemotron-70B-Instruct</option>
 <option value="meta-llama/Meta-Llama-3.1-405B-Instruct">meta-llama/Meta-Llama-3.1-405B</option>
 </select>
@@ -112,7 +113,7 @@ function load(){
  document.getElementById("apikey").value=saved;
  document.getElementById("endpoint").value=localStorage.getItem(LS_EP)||"https://api.tokenfactory.nebius.com/v1/chat/completions";
  document.getElementById("model").value=localStorage.getItem(LS_MODEL)||"meta-llama/Meta-Llama-3.1-70B-Instruct";
- updateS
+ document.getElementById("model").value=localStorage.getItem(LS_MODEL)||"google/gemma-3-27b-it"
 }document.getElementById("model").value=localStorage.getItem(LS_MODEL)||"google/gemma-3-27b-it"
 
 function updateStatus(){
