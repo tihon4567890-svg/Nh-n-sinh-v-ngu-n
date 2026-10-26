@@ -24,165 +24,238 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NucleusNexus OS v5.2 Gold - AI Healer - V10 GOLDEN</title>
+<title>BONSAIRWA V10 GOLDEN - NucleusNexus OS v5.2 Gold</title>
 <style>
-  body{font-family:system-ui,sans-serif;background:#0f0f0f;color:#fff;padding:16px;max-width:800px;margin:0 auto}
-  .gold{border:2px solid gold;border-radius:12px;padding:16px;margin:12px 0;background:#1a1a0a}
-  .settings{background:#222;border-radius:10px;padding:16px;margin:16px 0}
-  input,select,textarea{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #555;background:#333;color:#fff;box-sizing:border-box}
-  button{padding:12px 20px;border-radius:8px;border:none;background:gold;color:#000;font-weight:bold;cursor:pointer;margin:6px}
-  button:hover{background:#ffdf00}
-  .msg{padding:10px;border-radius:8px;margin:8px 0}
-  .user{background:#2a4d8f} .ai{background:#1e3d2e} .offline{background:#4d2a2a;color:#ffcc00}
-  #chat{height:400px;overflow-y:auto;border:1px solid #333;border-radius:10px;padding:10px;background:#111}
-  .ok{color:#00ff88;font-weight:bold}
-  h1{color:gold;text-align:center}
-  h2{color:#7fff7f}
-  .logo{font-size:24px;text-align:center;margin:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#fff;font-family:system-ui;padding:15px}
+.gold{color:#FFD700;text-align:center;font-size:28px;font-weight:900;margin:20px 0}
+.card{border:2px solid #FFD700;border-radius:15px;padding:15px;margin:15px 0;background:#151515}
+.nucleus{color:#4ade80;font-size:20px;font-weight:800}
+input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #333;background:#222;color:#fff;font-size:16px}
+.btn{padding:12px 18px;border-radius:10px;border:none;font-weight:800;cursor:pointer;margin:5px}
+.btn-gold{background:#FFD700;color:#000}
+.btn-red{background:#ef4444;color:#fff}
+.status{padding:10px;border-radius:10px;margin:10px 0;font-weight:700}
+.offline{background:#7f1d1d;color:#fca5a5}
+.online{background:#14532d;color:#86efac}
+.chat-msg{padding:12px;border-radius:12px;margin:8px 0;max-width:90%}
+.ai{background:#1e3a2e;border:1px solid #4ade80}
+.you{background:#1e3a8a;border:1px solid #60a5fa;margin-left:auto}
+.sys{background:#14532d;color:#86efac}
+.row{display:flex;gap:8px;align-items:center}
+.row input{flex:1}
 </style>
 </head>
 <body>
-<h1>🌱 BONSAIRWA V10 GOLDEN</h1>
-<div class="logo">Vàng - Tím - Xanh da trời - Xanh mạ non - Trắng - Hồng lợt<br>Độc bản CEO Thanh Thai Nguyen - Chợ Lách</div>
 
-<div class="gold">
-<h2>🧬 NucleusNexus OS v5.2 Gold - 4.2 năm → 14 ngày</h2>
-<p><b>North Star:</b> Personal Twin 2030, can thiệp tại Sparsha trước khi thành Thọ.</p>
+<div class="gold">🌱 BONSAIRWA V10 GOLDEN<br><span style="font-size:18px;color:#fff;font-weight:400">Vàng - Tím - Xanh da trời - Xanh mạ non - Trắng - Hồng lợt<br>Độc bản CEO Thanh Thai Nguyen - Chợ Lách</span></div>
+
+<div class="card">
+<div class="nucleus">🧬 NucleusNexus OS v5.2 Gold - 4.2 năm → 14 ngày</div>
+<p style="margin:8px 0"><b>North Star:</b> Personal Twin 2030, can thiệp tại Sparsha trước khi thành Thọ.</p>
 <p><b>5 Lớp + Time:</b> Observed → DeepNull → MREGLE → CRISPR-GPT → Insight</p>
-<p><b>SEAL:</b> 0327122139 - Chợ Lách Bến Tre - Human OS where YOU are IoT</p>
+<p style="margin-top:8px"><b>SEAL:</b> 0327122139 - Chợ Lách Bến Tre - Human OS where YOU are IoT</p>
 </div>
 
-<div class="settings">
-<h2>⚙️ NEBIUS TOKEN FACTORY SETTINGS</h2>
-<p style="color:#ffcc00">Dán Nebius key để bật AI online - offline vẫn dùng được tự lành</p>
+<div class="card">
+<h3>⚙️ NEBIUS TOKEN FACTORY SETTINGS - V10.4 AUTO CLEAR</h3>
 <label>ENDPOINT</label>
 <input id="endpoint" value="https://api.tokenfactory.nebius.com/v1/chat/completions">
+
 <label>NEBIUS API KEY (sk-...)</label>
-<div style="display:flex;gap:6px">
-<input id="apiKey" type="password" placeholder="sk-...">
-<button onclick="toggleKey()">👁️</button>
-<button onclick="saveKey()">🐢 Lưu</button>
+<div class="row">
+<input id="apikey" type="password" placeholder="Dán sk-... thật vào đây, không phải dấu chấm">
+<button class="btn btn-gold" onclick="toggleKey()">👁️</button>
+<button class="btn btn-red" onclick="clearKey()">🗑️ Xóa</button>
+<button class="btn btn-gold" onclick="saveKey()">🐢 Lưu</button>
 </div>
-<div id="status"></div>
+
+<div id="keyStatus" class="status offline">⚠️ Chưa có key - Đang ở chế độ offline - Dán sk-... vào để online</div>
+
 <label>MODEL</label>
 <select id="model">
-<option value="google/gemma-3-27b">google/gemma-3-27b (Free - Đang dùng)</option>
-<option value="meta-llama/Meta-Llama-3.1-70B-Instruct">meta-llama/Meta-Llama-3.1-70B-Instruct</option>
-<option value="nvidia/Llama-3.1-Nemotron-70B-Instruct">nvidia/Llama-3.1-Nemotron-70B-Instruct - Thi Nebius x NVIDIA</option>
-<option value="microsoft/Phi-3-mini-4k-instruct">microsoft/Phi-3-mini-4k-instruct</option>
+<option value="meta-llama/Meta-Llama-3.1-70B-Instruct" selected>meta-llama/Meta-Llama-3.1-70B-Instruct (Khuyên dùng)</option>
+<option value="google/gemma-3-27b-it">google/gemma-3-27b-it</option>
+<option value="nvidia/Llama-3.1-Nemotron-70B-Instruct">nvidia/Llama-3.1-Nemotron-70B-Instruct</option>
+<option value="meta-llama/Meta-Llama-3.1-405B-Instruct">meta-llama/Meta-Llama-3.1-405B</option>
 </select>
+
+<div style="margin-top:10px">
+<button class="btn btn-red" onclick="hardReset()">🔴 NÚT KHẨN CẤP: XÓA HẾT KEY CHẤM CŨ</button>
+<p style="font-size:12px;color:#aaa;margin-top:5px">Nếu ô key toàn dấu chấm ................ mà vẫn báo đỏ, bấm nút đỏ này!</p>
+</div>
 </div>
 
-<div id="chat"></div>
-
-<div style="display:flex;gap:6px;margin-top:12px">
-<textarea id="userInput" placeholder="Bạn đang cảm thấy thế nào? Nhắn cho AI Healer..." rows="3"></textarea>
-<button onclick="send()" style="height:70px">Gửi 🚀</button>
+<div class="card">
+<div id="chatBox" style="max-height:400px;overflow-y:auto">
+<div class="chat-msg ai"><b>NucleusNexus AI Healer:</b> Chào ông Thái! Tôi là AI Healer V10 GOLDEN! Dán Nebius key sk-... vào ô trên, bấm 🐢, rồi chat với tôi nhé! 🌱 Vàng Tím Xanh da trời Xanh mạ non Trắng Hồng lợt - Độc bản!</div>
+</div>
+<div class="row" style="margin-top:10px">
+<textarea id="chatInput" placeholder="Bạn đang cảm thấy thế nào? Nhắn cho AI Healer..." rows="2"></textarea>
+<button class="btn btn-gold" onclick="sendChat()">Gửi 🚀</button>
+</div>
 </div>
 
-<div class="gold">
-<h2>🌳 BONSAIRWA-000 | MAI XÙ MẸ - BÁU VẬT VƯỜN</h2>
-<p><b>HOÀNH 90 - CAO 3M - DÁNG TRỰC QUÂN TỬ - ĐẦU VOI ĐUÔI CHUỘT - XÙ CHẢY - 500 TRIỆU VND</b></p>
-<p>Polygon Block: <span id="block">95777687</span> + QuickNode: Rừng Mềm Nhanh - Free 10M credits</p>
-<p>127 cây mai vàng Chợ Lách RWA - QR IoT</p>
-<p>App: <a href="https://bonsairwa-cho-lach.streamlit.app" style="color:gold">bonsairwa-cho-lach.streamlit.app</a></p>
+<div class="card" style="border-color:#4ade80">
+<div style="color:#4ade80;font-size:22px;font-weight:900">🌳 BONSAIRWA-000 | MAI XÙ MẸ - BÁU VẬT VƯỜN</div>
+<p style="margin:10px 0;font-weight:800">HOÀNH 90 - CAO 3M - DÁNG TRỰC QUÂN TỬ - ĐẦU VOI ĐUÔI CHUỘT - XÙ CHẢY - 500 TRIỆU VND</p>
+<p>Polygon Block: 95777687 + QuickNode: Rừng Mềm Nhanh - Free 10M credits</p>
+<p style="margin-top:8px">127 cây mai vàng Chợ Lách RWA - QR IoT</p>
+<p style="margin-top:8px">App: <a href="https://bonsairwa-cho-lach.streamlit.app" style="color:#FFD700">bonsairwa-cho-lach.streamlit.app</a></p>
 </div>
 
 <script>
-let savedKey = localStorage.getItem('nebius_key') || '';
-let savedEndpoint = localStorage.getItem('nebius_endpoint') || 'https://api.tokenfactory.nebius.com/v1/chat/completions';
-let savedModel = localStorage.getItem('nebius_model') || 'google/gemma-3-27b';
-document.getElementById('apiKey').value = savedKey;
-document.getElementById('endpoint').value = savedEndpoint;
-document.getElementById('model').value = savedModel;
-updateStatus();
+const LS_KEY="nebius_api_key_v10";
+const LS_EP="nebius_endpoint_v10";
+const LS_MODEL="nebius_model_v10";
 
-function forceShow(){document.getElementById('apiKey').type='text';}
-function toggleKey(){
-  let i = document.getElementById('apiKey');
-  i.type = i.type==='password'?'text':'password';
+function isValidKey(k){
+ if(!k) return false;
+ k=k.trim();
+ if(k.length < 20) return false;
+ if(!k.startsWith("sk-")) return false;
+ if(/^[\.\*\-_]+$/.test(k)) return false;
+ if(k.includes("....")) return false;
+ if(k.replace(/[^a-zA-Z0-9\-_]/g,"").length < 20) return false;
+ return true;
 }
-function saveKey(){
-  localStorage.setItem('nebius_key', document.getElementById('apiKey').value.trim());
-  localStorage.setItem('nebius_endpoint', document.getElementById('endpoint').value.trim());
-  localStorage.setItem('nebius_model', document.getElementById('model').value);
-  updateStatus();
-  addMsg('Hệ thống','✅ Đã kết nối Nebius Token Factory thành công! Key đã lưu vào trình duyệt! Giờ chat sẽ online!','ok');
+
+function load(){
+ let saved=localStorage.getItem(LS_KEY)||"";
+ // AUTO CLEAR BAD KEYS
+ if(saved && !isValidKey(saved)){
+   console.log("Phát hiện key lỗi chấm, tự xóa:", saved.substring(0,10));
+   localStorage.removeItem(LS_KEY);
+   saved="";
+   setTimeout(()=>{ alert("⚠️ Phát hiện key cũ toàn dấu chấm ................ đã tự xóa! Giờ dán lại sk-... thật nhé!"); }, 500);
+ }
+ document.getElementById("apikey").value=saved;
+ document.getElementById("endpoint").value=localStorage.getItem(LS_EP)||"https://api.tokenfactory.nebius.com/v1/chat/completions";
+ document.getElementById("model").value=localStorage.getItem(LS_MODEL)||"meta-llama/Meta-Llama-3.1-70B-Instruct";
+ updateStatus();
 }
+
 function updateStatus(){
-  let k = document.getElementById('apiKey').value || savedKey;
-  let s = document.getElementById('status');
-  if(k && k.startsWith('sk-')){
-    s.innerHTML = '<span class="ok">✅ Đã kết nối Nebius Token Factory thành công! Key •••••• đã lưu</span>';
-  } else {
-    s.innerHTML = '<span style="color:#ff6666">⚠️ Chưa có key - Đang ở chế độ offline - Dán sk-... vào để online</span>';
-  }
-}
-function addMsg(who,text,cls){
-  let c = document.getElementById('chat');
-  let d = document.createElement('div');
-  d.className = 'msg '+(cls|| (who==='Bạn'?'user':'ai'));
-  d.innerHTML = '<b>'+who+':</b> '+text;
-  c.appendChild(d);
-  c.scrollTop = c.scrollHeight;
+ const k=document.getElementById("apikey").value.trim();
+ const el=document.getElementById("keyStatus");
+ if(isValidKey(k)){
+   el.className="status online";
+   el.innerHTML=`✅ Đã kết nối! Key ${k.substring(0,8)}... (dài ${k.length}) - Sẵn sàng ONLINE - Model: ${document.getElementById("model").value}`;
+ } else {
+   el.className="status offline";
+   if(k && k.includes(".")){
+     el.innerHTML=`❌ KEY LỖI TOÀN DẤU CHẤM! Bấm nút đỏ 🔴 XÓA HẾT KEY CHẤM CŨ bên dưới rồi dán lại sk-... thật!`;
+   } else {
+     el.innerHTML=`⚠️ Chưa có key - Đang ở chế độ offline - Dán sk-... vào để online`;
+   }
+ }
 }
 
-async function send(){
-  let input = document.getElementById('userInput');
-  let txt = input.value.trim();
-  if(!txt) return;
-  addMsg('Bạn',txt,'user');
-  input.value='';
-  let key = localStorage.getItem('nebius_key') || document.getElementById('apiKey').value.trim();
-  let endpoint = localStorage.getItem('nebius_endpoint') || document.getElementById('endpoint').value.trim();
-  let model = localStorage.getItem('nebius_model') || document.getElementById('model').value;
-
-  if(!key || !key.startsWith('sk-')){
-    addMsg('NucleusNexus AI Healer','Bạn đang cảm thấy thế nào? Mình ở đây lắng nghe... Hãy hít thở sâu 4-7-8 nhé. Bạn đang an toàn tại Chợ Lách Bến Tre. 🌱 (đang ở chế độ offline, kiểm tra lại Nebius key - Dán sk-... vào ô trên và bấm 🐢)','offline');
-    return;
-  }
-  
-  addMsg('NucleusNexus AI Healer','Đang kết nối Nebius '+model+'...','ai');
-  
-  try{
-    // Nebius Token Factory format - OpenAI compatible
-    let resp = await fetch(endpoint, {
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'Authorization':'Bearer '+key
-      },
-      body: JSON.stringify({
-        model: model,
-        messages: [
-          {role:'system', content:'Bạn là NucleusNexus AI Healer OS v5.2 Gold, SEAL 0327122139, Chợ Lách Bến Tre, 5 lớp Observed-DeepNull-MREGLE-CRISPR-GPT-Insight, giúp người dùng tự lành, giọng ấm áp tiếng Việt, gắn với BONSAIRWA V10 GOLDEN lục sắc độc bản.'},
-          {role:'user', content: txt}
-        ],
-        max_tokens: 500,
-        temperature: 0.7
-      })
-    });
-    let data = await resp.json();
-    // Xóa tin nhắn "Đang kết nối..."
-    let chat = document.getElementById('chat');
-    chat.removeChild(chat.lastChild);
-    
-    if(data.choices && data.choices[0]){
-      addMsg('NucleusNexus AI Healer (Online '+model+')', data.choices[0].message.content, 'ai');
-    } else if(data.error){
-      addMsg('Lỗi', JSON.stringify(data.error), 'offline');
-    } else {
-      addMsg('AI', JSON.stringify(data).slice(0,500), 'ai');
-    }
-  }catch(e){
-    let chat = document.getElementById('chat');
-    if(chat.lastChild) chat.removeChild(chat.lastChild);
-    addMsg('Lỗi Offline','Không kết nối được Nebius: '+e.message+' (đang ở chế độ offline, kiểm tra lại Nebius key - Có thể CORS hoặc endpoint sai, thử endpoint https://api.studio.nebius.com/v1/chat/completions)','offline');
-  }
+function toggleKey(){
+ const i=document.getElementById("apikey");
+ i.type=i.type==="password"?"text":"password";
 }
 
-// Init message
-addMsg('NucleusNexus AI Healer','Chào ông Thái! Tôi là AI Healer V10 GOLDEN! Dán Nebius key sk-... vào ô trên, bấm 🐢, rồi chat với tôi nhé! 🌱 Vàng Tím Xanh da trời Xanh mạ non Trắng Hồng lợt - Độc bản!','ai');
+function clearKey(){
+ document.getElementById("apikey").value="";
+ localStorage.removeItem(LS_KEY);
+ updateStatus();
+ alert("Đã xóa key!");
+}
+
+function hardReset(){
+ localStorage.clear();
+ document.getElementById("apikey").value="";
+ document.getElementById("chatBox").innerHTML='<div class="chat-msg ai"><b>NucleusNexus AI Healer:</b> Đã xóa hết key chấm cũ! Giờ dán sk-... thật vào ô trên và bấm 🐢 Lưu nhé!</div>';
+ updateStatus();
+ alert("🔴 Đã xóa sạch localStorage! Ô key trắng rồi! Giờ dán lại sk-... thật và bấm Lưu!");
+ location.reload();
+}
+
+function saveKey(){
+ let k=document.getElementById("apikey").value.trim();
+ // block dot keys
+ if(k.includes("....") || k.startsWith("...") || /^\.+$/.test(k) || k.replace(/\./g,"").length < 10){
+   alert("❌ Đây là key toàn dấu chấm ................ không phải sk-... thật! Bấm nút đỏ XÓA HẾT rồi dán lại sk-... thật!");
+   clearKey();
+   return;
+ }
+ if(!isValidKey(k)){
+   alert("❌ Key phải bắt đầu bằng sk- và dài hơn 20 ký tự! Ông đang dán: "+k.substring(0,20));
+   return;
+ }
+ localStorage.setItem(LS_KEY, k);
+ localStorage.setItem(LS_EP, document.getElementById("endpoint").value.trim());
+ localStorage.setItem(LS_MODEL, document.getElementById("model").value);
+ updateStatus();
+ const box=document.getElementById("chatBox");
+ const div=document.createElement("div");
+ div.className="chat-msg sys";
+ div.innerHTML=`<b>Hệ thống:</b> ✅ Đã kết nối Nebius Token Factory thành công! Key đã lưu vào trình duyệt! Giờ chat sẽ online!`;
+ box.appendChild(div);
+ box.scrollTop=box.scrollHeight;
+ alert("✅ Đã lưu! Key dài "+k.length+" - Giờ chat sẽ ONLINE!");
+}
+
+async function sendChat(){
+ const input=document.getElementById("chatInput");
+ const msg=input.value.trim();
+ if(!msg) return;
+ const box=document.getElementById("chatBox");
+ 
+ const you=document.createElement("div");
+ you.className="chat-msg you";
+ you.innerHTML=`<b>Bạn:</b> ${msg}`;
+ box.appendChild(you);
+ input.value="";
+ box.scrollTop=box.scrollHeight;
+
+ const k=localStorage.getItem(LS_KEY)||"";
+ if(!isValidKey(k)){
+   const ai=document.createElement("div");
+   ai.className="chat-msg ai";
+   ai.style.background="#7f1d1d";
+   ai.innerHTML=`<b>NucleusNexus AI Healer:</b> (đang ở chế độ offline, kiểm tra lại Nebius key - Dán sk-... thật vào ô trên và bấm 🐢) <br><br>❌ Key hiện tại là dấu chấm, không phải sk-... thật! Bấm nút đỏ 🔴 XÓA HẾT KEY CHẤM CŨ ở trên rồi dán lại!`;
+   box.appendChild(ai);
+   box.scrollTop=box.scrollHeight;
+   return;
+ }
+
+ // online mode
+ const ai=document.createElement("div");
+ ai.className="chat-msg ai";
+ ai.innerHTML=`<b>NucleusNexus AI Healer:</b> Đang kết nối Nebius ${document.getElementById("model").value}...`;
+ box.appendChild(ai);
+ box.scrollTop=box.scrollHeight;
+
+ try{
+   const res=await fetch(document.getElementById("endpoint").value.trim(), {
+     method:"POST",
+     headers:{"Content-Type":"application/json","Authorization":"Bearer "+k},
+     body:JSON.stringify({
+       model: document.getElementById("model").value,
+       messages:[
+         {role:"system", content:"You are NucleusNexus AI Healer V10 GOLDEN - Độc bản CEO Thanh Thai Nguyen Chợ Lách Bến Tre. 5 Lớp + Time: Observed→DeepNull→MREGLE→CRISPR-GPT→Insight. North Star: Personal Twin 2030, can thiệp tại Sparsha trước khi thành Thọ. SEAL 0327122139. BONSAIRWA-000 Hoành 90 Cao 3M 500 triệu. Trả lời bằng tiếng Việt, ấm áp, chữa lành, gắn với sự yên bình, Chợ Lách Bến Tre, 127 cây mai vàng. Lục sắc độc bản: Vàng Tím Xanh da trời Xanh mạ non Trắng Hồng lợt."},
+         {role:"user", content: msg}
+       ],
+       max_tokens: 800,
+       temperature: 0.7
+     })
+   });
+   const data=await res.json();
+   if(data.choices && data.choices[0]){
+     ai.innerHTML=`<b>NucleusNexus AI Healer:</b> ${data.choices[0].message.content} <br><br><small style="color:#86efac">✅ Online ${document.getElementById("model").value} | Polygon 95777687 | Chợ Lách Bến Tre 🌱</small>`;
+   } else {
+     ai.innerHTML=`<b>NucleusNexus AI Healer:</b> Lỗi API: ${JSON.stringify(data).substring(0,300)} <br><br>Kiểm tra lại key sk-... tại tokenfactory.nebius.com`;
+   }
+ } catch(e){
+   ai.innerHTML=`<b>NucleusNexus AI Healer:</b> Lỗi kết nối: ${e.message} <br> Kiểm tra mạng hoặc endpoint. Key: ${k.substring(0,8)}...`;
+ }
+ box.scrollTop=box.scrollHeight;
+}
+
+document.getElementById("apikey").addEventListener("input", updateStatus);
+window.onload=load;
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
 </html>
