@@ -58,7 +58,7 @@ input,select,textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;bo
 </div>
 
 <div class="card">
-<h3>⚙️ NEBIUS TOKEN FACTORY SETTINGS - V10.5 NHẬN KEY v1. (FINAL)</h3>
+<h3>⚙️ NEBIUS TOKEN FACTORY SETTINGS - V10.6 FULL v1. 234 KÝ TỰ (FINAL)</h3>
 <label>ENDPOINT</label>
 <input id="endpoint" value="https://api.tokenfactory.nebius.com/v1/chat/completions">
 
@@ -154,7 +154,8 @@ function updateStatus(){
 
 function toggleKey(){
  const i=document.getElementById("apikey");
- i.type=i.type==="password"?"text":"password";
+ // textarea no toggle, just focus
+ i.focus();
 }
 
 function clearKey(){
